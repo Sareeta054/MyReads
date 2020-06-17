@@ -5,6 +5,11 @@ import * as BooksAPI from '../utils/BooksAPI'
 import PropTypes from 'prop-types'
 
 export default class SearchPage extends Component {
+  static propTypes = {
+    changeShelf: PropTypes.func.isRequired,
+    booksOnShelf: PropTypes.array,
+  }
+  
   state = {
     query: '',
     books: []
@@ -14,6 +19,7 @@ export default class SearchPage extends Component {
     this.setState({query: query.trim()})
     BooksAPI.search(query, 30).then(books => {this.setState({books})})
   }
+
     render() {
         return (  
           <div className="search-books">
