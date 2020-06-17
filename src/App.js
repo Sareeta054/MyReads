@@ -33,11 +33,11 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-          <Bookshelf changeShelf={this.changeShelf} booksOnShelf={this.state.books} />
-          <div className="open-search">
-                <Link to="/search">Add a book</Link>
-              </div>
+            <Bookshelf changeShelf={this.changeShelf} booksOnShelf={this.state.books} />
+            <div className="open-search">
+                <Link to="/search"><button>Add a book</button></Link>
             </div>
+          </div>
         )} />
 
         <Route exact path = '/search' render={() => (

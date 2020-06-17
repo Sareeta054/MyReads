@@ -7,18 +7,25 @@ import PropTypes from 'prop-types'
 export default class SearchPage extends Component {
   static propTypes = {
     changeShelf: PropTypes.func.isRequired,
-    booksOnShelf: PropTypes.array,
   }
-  
+
   state = {
     query: '',
     books: []
   }
 
   updateQuery = query => {
-    this.setState({query: query.trim()})
-    BooksAPI.search(query, 30).then(books => {this.setState({books})})
-  }
+    if (!query) {
+      this.setState({query:'', books:[]})
+    } else {
+      this.setState({query: query.trim()})
+      BooksAPI.search(query, 30).then(books => {
+        if (books.error){
+          books = []
+        }
+        this.setState({books})})
+    }
+    }
 
     render() {
         return (  
